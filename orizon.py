@@ -1,11 +1,11 @@
 import pandas as pd
 
 # Datos del CHECK LIST-RECEPCION DE INSUMOS CARGAS PELIGROSAS
-data_recepcion = {
+data_recepcion_checklist_items = {
     "Descripción": [
         "VERIFICAR QUE EL CAMION CUENTA CON LETRERO DE IDENTIFICACION CON EL PELIGRO",
         "EMBALAJE EXTERNO DEBE ESTAR MARCADO Y ETIQUETADO SEGÚN SU CLASIFICACION",
-        "VERIFICAR QUE LA CARGA SE DISTRIBUYE DE MANERA SEGURA Y SUJETA CON MEDIOS APROPIADOS",
+        "VERIFICAR QUE LA CARGA SE DISTOTRIBUYE DE MANERA SEGURA Y SUJETA CON MEDIOS APROPIADOS",
         "VERIFICAR QUE LA CARGA NO TENGA RIESGO DE INCOMPATIBILIDAD",
         "SUSTANCIAS INCOMPATIBLES ENTRE SI, SE DEBEN DISTRIBUIR DE MANERA SEPARADA EN EL TRANSPORTE",
         "DETENER EL MOTOR MIENTRAS SE REALIZA ACTIVIDAD DE DESCARGA DE CARGAS PELIGROSAS",
@@ -23,18 +23,18 @@ data_recepcion = {
         "CALLE ESTA CERRADA ANTES DE INICIAR CARGA O DESCARGA DE MATERIALES PELIGROSOS"
     ],
     "Cumple (Sí/No)": [
-        "NO", "Si", "NO", "Si", "Si", "Si", "NO", "Si", "Si", "Si", "NO", "Si", "NO", "ON", "NO", "NO", "NO", "NO"
+        "NO", "Si", "NO", "Si", "Si", "Si", "NO", "Si", "Si", "Si", "NO", "Si", "NO", "NO", "NO", "NO", "NO", "NO"
     ]
 }
 
-df_recepcion = pd.DataFrame(data_recepcion)
+df_recepcion = pd.DataFrame(data_recepcion_checklist_items)
 
 # Agregamos la información del encabezado, repitiéndola para cada fila
 num_rows_recepcion = len(df_recepcion)
 df_recepcion['Fecha de Recepción'] = ["08-07-2025"] * num_rows_recepcion
 df_recepcion['Proveedor'] = ["RENSTO LO PE PACKERS"] * num_rows_recepcion
 df_recepcion['Patente'] = ["KBxj67"] * num_rows_recepcion
-df_recepcion['Nombre Conductor'] = ["RENSTO LO PE PACKERS."] * num_rows_recepcion # Corregí el nombre del conductor según el PDF
+df_recepcion['Nombre Conductor'] = ["RENSTO LO PE PACKERS."] * num_rows_recepcion
 
 # Reordenar las columnas para que el encabezado esté al principio
 df_recepcion = df_recepcion[['Fecha de Recepción', 'Proveedor', 'Patente', 'Nombre Conductor', 'Descripción', 'Cumple (Sí/No)']]
@@ -131,3 +131,11 @@ full_html = f"""
     </div>
 </body>
 </html>
+"""
+
+# Guardar el HTML en un archivo
+with open("reporte_checklists_newen.html", "w", encoding="utf-8") as f:
+    f.write(full_html)
+
+print("Se ha generado el archivo 'reporte_checklists_newen.html' con los datos y el análisis.")
+print("Puedes abrir este archivo en tu navegador web para visualizar el informe.")
